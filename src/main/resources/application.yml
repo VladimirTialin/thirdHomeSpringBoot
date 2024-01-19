@@ -1,2 +1,4 @@
 application:
-  max-allowed-books: 1
+  issue:
+    max-allowed-books:
+      count: 1

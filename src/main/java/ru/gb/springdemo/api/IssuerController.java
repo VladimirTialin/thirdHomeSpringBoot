@@ -11,6 +11,7 @@ import ru.gb.springdemo.model.ValidateReaderException;
 import ru.gb.springdemo.repository.IssueRepository;
 import ru.gb.springdemo.repository.ReaderRepository;
 import ru.gb.springdemo.service.AllowedBooks;
+import ru.gb.springdemo.service.AllowedCountBooks;
 import ru.gb.springdemo.service.IssuerService;
 
 import java.time.LocalDateTime;
@@ -26,7 +27,7 @@ public class IssuerController {
   @Autowired
   private IssueRepository issueRepository;
   @Autowired
-  private AllowedBooks allowedBooks;
+  private AllowedCountBooks allowedBooks;
   @PutMapping("/{issueId}")
   public void returnBook(@PathVariable long issueId) {
     issueRepository.getIssues().forEach(issue -> {
@@ -41,8 +42,8 @@ public class IssuerController {
   }
   @GetMapping("/allowed")
   public int setMaxAllowedBooks(@RequestParam int count) {
-    allowedBooks.setAllowedBooks(count);
-    return allowedBooks.getAllowedBooks();
+    allowedBooks.setCount(count);
+    return allowedBooks.getCount();
   }
   @PostMapping
   public ResponseEntity<Issue> issueBook(@RequestBody IssueRequest request) {

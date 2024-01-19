@@ -19,7 +19,7 @@ import java.util.concurrent.atomic.AtomicLong;
 public class IssuerService {
 
 
-  private final AllowedBooks countBook;
+  private final AllowedCountBooks countBook;
   private final BookRepository bookRepository;
   private final ReaderRepository readerRepository;
   private final IssueRepository issueRepository;
@@ -37,9 +37,9 @@ public class IssuerService {
         && x.getReaderId()==request.getReaderId())
         count.set(count.incrementAndGet());
     });
-    if (count.get() ==countBook.getAllowedBooks())
+    if (count.get() == countBook.getCount())
       throw new ValidateReaderException("Читателю с идентификатором \""
-              + request.getReaderId() + "\" " + "выдано книг: \""+count);
+              + request.getReaderId() + "\" " + "выдано книг: \""+count.get());
 
 
     Issue issue = new Issue(request.getBookId(), request.getReaderId());
