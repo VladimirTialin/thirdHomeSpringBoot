@@ -9,9 +9,11 @@ import ru.gb.springdemo.api.request.IssueRequest;
 import ru.gb.springdemo.model.Issue;
 import ru.gb.springdemo.model.ValidateReaderException;
 import ru.gb.springdemo.repository.IssueRepository;
+import ru.gb.springdemo.repository.ReaderRepository;
 import ru.gb.springdemo.service.AllowedBooks;
 import ru.gb.springdemo.service.IssuerService;
 
+import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
 
 @Slf4j
@@ -25,11 +27,13 @@ public class IssuerController {
   private IssueRepository issueRepository;
   @Autowired
   private AllowedBooks allowedBooks;
-
-//  @PutMapping
-//  public void returnBook(long issueId) {
-//    // найти в репозитории выдачу и проставить ей returned_at
-//  }
+  @PutMapping("/{issueId}")
+  public void returnBook(@PathVariable long issueId) {
+    issueRepository.getIssues().forEach(issue -> {
+      if(issue.getId()==issueId)
+        issue.setReturnedAt(LocalDateTime.now());
+    });
+  }
 
   @GetMapping("/{id}")
   public Issue getById(@PathVariable long id) {
