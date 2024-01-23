@@ -2,6 +2,8 @@ package ru.gb.springdemo.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.springdemo.model.Issue;
 import ru.gb.springdemo.model.Reader;
@@ -23,6 +25,7 @@ public class ReaderController {
     public List<Reader>  getReadersAll(){
         return readerRepository.getReaders();
     }
+
 
     @GetMapping("/{id}")
     public Reader getById(@PathVariable long id) {
