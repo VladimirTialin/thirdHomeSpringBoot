@@ -2,6 +2,7 @@ package ru.gb.springdemo.api;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
+
 import org.springframework.web.bind.annotation.*;
 import ru.gb.springdemo.model.Book;
 import ru.gb.springdemo.repository.BookRepository;
@@ -16,6 +17,7 @@ public class BookController {
     public List<Book>  getBooksAll(){
         return bookRepository.getBooks();
     }
+
 
     @GetMapping("/{id}")
     public Book getById(@PathVariable long id) {

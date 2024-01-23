@@ -9,8 +9,6 @@ import ru.gb.springdemo.api.request.IssueRequest;
 import ru.gb.springdemo.model.Issue;
 import ru.gb.springdemo.model.ValidateReaderException;
 import ru.gb.springdemo.repository.IssueRepository;
-import ru.gb.springdemo.repository.ReaderRepository;
-import ru.gb.springdemo.service.AllowedBooks;
 import ru.gb.springdemo.service.AllowedCountBooks;
 import ru.gb.springdemo.service.IssuerService;
 
@@ -19,7 +17,7 @@ import java.util.NoSuchElementException;
 
 @Slf4j
 @RestController
-@RequestMapping("/issue")
+@RequestMapping("/issues")
 public class IssuerController {
 
   @Autowired

@@ -22,10 +22,10 @@ public class BookRepository {
   @PostConstruct
   public void generateData() {
     books.addAll(List.of(
-      new Book("война и мир"),
-      new Book("метрвые души"),
-      new Book("чистый код"),
-            new Book("чистый код")
+      new Book("Война и мир"),
+      new Book("Метрвые души"),
+      new Book("Чистый код"),
+            new Book("Грязный код")
     ));
   }
   public Book getBookById(long id) {

@@ -17,8 +17,6 @@ import java.util.concurrent.atomic.AtomicLong;
 @Service
 @AllArgsConstructor
 public class IssuerService {
-
-
   private final AllowedCountBooks countBook;
   private final BookRepository bookRepository;
   private final ReaderRepository readerRepository;
