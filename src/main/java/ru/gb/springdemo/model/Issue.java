@@ -1,30 +1,25 @@
 package ru.gb.springdemo.model;
 
+import jakarta.persistence.*;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-
 import java.time.LocalDateTime;
 
-/**
- * Запись о факте выдачи книги (в БД)
- */
 @Data
-@RequiredArgsConstructor
+@Entity
+@Table(name="issues")
 public class Issue {
-
-  public static long sequence = 1L;
-  private final long id;
-  private final long bookId;
-  private final long readerId;
-  private final LocalDateTime issuedAt;
-  @Setter
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private long id;
+  @Column(name = "bookId")
+  private long bookId;
+  @Column(name = "readerId")
+  private long readerId;
+  @Column(name = "issuedAtDate")
+  @Temporal(TemporalType.TIMESTAMP)
+  private LocalDateTime issuedAt;
+  @Column(name = "returnedAtDate")
+  @Temporal(TemporalType.TIMESTAMP)
   private LocalDateTime returnedAt;
-  public Issue(long bookId, long readerId) {
-    this.id = sequence++;
-    this.bookId = bookId;
-    this.readerId = readerId;
-    this.issuedAt  = LocalDateTime.now();
-    this.returnedAt = null;
-  }
+
 }

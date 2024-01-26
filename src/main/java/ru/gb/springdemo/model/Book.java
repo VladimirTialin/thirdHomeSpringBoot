@@ -1,19 +1,15 @@
 package ru.gb.springdemo.model;
 
+import jakarta.persistence.*;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 @Data
-@RequiredArgsConstructor
+@Entity
+@Table(name = "books")
 public class Book {
-
-  public static long sequence = 1L;
-
-  private final long id;
-  private final String name;
-
-  public Book(String name) {
-    this(sequence++, name);
-  }
-
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private long id;
+  @Column(name="bookName")
+  private String name;
 }

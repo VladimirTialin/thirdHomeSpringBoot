@@ -2,3 +2,13 @@ application:
   issue:
     max-allowed-books:
       count: 1
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/library
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+      show-sql: true
