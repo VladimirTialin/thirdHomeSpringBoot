@@ -7,5 +7,4 @@ import ru.gb.springdemo.model.Book;
 
 @Repository
 public interface BookRepository extends JpaRepository <Book,Long> {
-
 }
