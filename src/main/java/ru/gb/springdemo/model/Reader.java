@@ -9,7 +9,7 @@ import lombok.Data;
 public class Reader {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
     @Column(name="readerName")
   private String name;
