@@ -1,26 +1,24 @@
-package ru.gb.springdemo.api;
+package ru.gb.springsecurity.api;
 
 import io.swagger.v3.oas.annotations.Hidden;
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.gb.springdemo.model.Issue;
-import ru.gb.springdemo.model.ValidateReaderException;
-import ru.gb.springdemo.repository.IssueRepository;
-import ru.gb.springdemo.model.ReaderProperties;
-import ru.gb.springdemo.service.IssuerService;
+import ru.gb.springsecurity.model.Issue;
+import ru.gb.springsecurity.model.ValidateReaderException;
+import ru.gb.springsecurity.repository.IssueRepository;
+import ru.gb.springsecurity.model.ReaderProperties;
+import ru.gb.springsecurity.service.IssuerService;
+
 import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
 
 @Slf4j
 @RestController
 @RequestMapping("/issues")
-@Tag(name = "Получение книги пользователем")
 public class IssuerController {
   @Autowired
   private IssuerService issuerService;
@@ -30,7 +28,6 @@ public class IssuerController {
   @Autowired
   private ReaderProperties readerProperties;
   @PutMapping("/{issueId}")
-  @Operation(summary = "Вернуть книгу", description = "Вернуть выданную книгу в библиотеку по идентификатору")
   public void returnBook(@PathVariable @Parameter(description = "идентификатор") long issueId) {
     issueRepository.findAll().forEach(issue -> {
       if(issue.getId()==issueId) {
@@ -41,7 +38,6 @@ public class IssuerController {
   }
 
   @GetMapping("/{id}")
-  @Operation(summary = "Получить запрос по идентификатору", description = "Показать данные запроса на получение книги пользователем по идентификатору")
   public Issue getById(@PathVariable @Parameter(description = "идентификатор") long id) {
     return issueRepository.findById(id).get();
   }
@@ -52,7 +48,6 @@ public class IssuerController {
     return readerProperties.getCount();
   }
   @PostMapping
-  @Operation(summary = "Создать запрос на получение книги", description = "Создает запрос на получение книги пользователем с отображением данных")
   public ResponseEntity<Issue> issueBook(@RequestBody Issue request) {
     log.info("Получен запрос на выдачу: readerId = {}, bookId = {}", request.getReaderId(), request.getBookId());
     try {

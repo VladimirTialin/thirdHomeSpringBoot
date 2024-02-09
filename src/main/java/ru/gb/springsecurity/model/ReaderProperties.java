@@ -1,4 +1,4 @@
-package ru.gb.springdemo.model;
+package ru.gb.springsecurity.model;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

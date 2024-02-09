@@ -1,13 +1,13 @@
-package ru.gb.springdemo.ui;
+package ru.gb.springsecurity.ui;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import ru.gb.springdemo.repository.BookRepository;
-import ru.gb.springdemo.repository.IssueRepository;
-import ru.gb.springdemo.repository.ReaderRepository;
+import ru.gb.springsecurity.repository.BookRepository;
+import ru.gb.springsecurity.repository.IssueRepository;
+import ru.gb.springsecurity.repository.ReaderRepository;
 
 @Controller
 @RequestMapping("ui")
