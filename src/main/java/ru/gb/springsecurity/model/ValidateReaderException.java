@@ -1,4 +1,4 @@
-package ru.gb.springdemo.model;
+package ru.gb.springsecurity.model;
 
 public class ValidateReaderException extends RuntimeException{
     public ValidateReaderException(String massage){

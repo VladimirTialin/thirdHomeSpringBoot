@@ -1,13 +1,14 @@
-package ru.gb.springdemo.service;
+package ru.gb.springsecurity.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ru.gb.springdemo.model.ReaderProperties;
-import ru.gb.springdemo.model.Issue;
-import ru.gb.springdemo.model.ValidateReaderException;
-import ru.gb.springdemo.repository.BookRepository;
-import ru.gb.springdemo.repository.IssueRepository;
-import ru.gb.springdemo.repository.ReaderRepository;
+import ru.gb.springsecurity.model.ReaderProperties;
+import ru.gb.springsecurity.model.Issue;
+import ru.gb.springsecurity.model.ValidateReaderException;
+import ru.gb.springsecurity.repository.BookRepository;
+import ru.gb.springsecurity.repository.IssueRepository;
+import ru.gb.springsecurity.repository.ReaderRepository;
+
 import java.util.NoSuchElementException;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -20,7 +21,7 @@ public class IssuerService {
   @Autowired
   private  ReaderRepository readerRepository;
   @Autowired
-  private  IssueRepository issueRepository;
+  private IssueRepository issueRepository;
   public Issue newIssue(Issue request) {
     AtomicLong count = new AtomicLong();
     if (bookRepository.findById(request.getBookId())==null){

@@ -1,15 +1,18 @@
-package ru.gb.springdemo.api;
+package ru.gb.springsecurity.api;
 
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.gb.springdemo.model.Issue;
-import ru.gb.springdemo.model.ValidateReaderException;
-import ru.gb.springdemo.repository.IssueRepository;
-import ru.gb.springdemo.model.ReaderProperties;
-import ru.gb.springdemo.service.IssuerService;
+import ru.gb.springsecurity.model.Issue;
+import ru.gb.springsecurity.model.ValidateReaderException;
+import ru.gb.springsecurity.repository.IssueRepository;
+import ru.gb.springsecurity.model.ReaderProperties;
+import ru.gb.springsecurity.service.IssuerService;
+
 import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
 
@@ -25,7 +28,7 @@ public class IssuerController {
   @Autowired
   private ReaderProperties readerProperties;
   @PutMapping("/{issueId}")
-  public void returnBook(@PathVariable long issueId) {
+  public void returnBook(@PathVariable @Parameter(description = "идентификатор") long issueId) {
     issueRepository.findAll().forEach(issue -> {
       if(issue.getId()==issueId) {
         issue.setReturnedAt(LocalDateTime.now());
@@ -35,10 +38,11 @@ public class IssuerController {
   }
 
   @GetMapping("/{id}")
-  public Issue getById(@PathVariable long id) {
+  public Issue getById(@PathVariable @Parameter(description = "идентификатор") long id) {
     return issueRepository.findById(id).get();
   }
   @GetMapping("/allowed")
+  @Hidden
   public long setMaxAllowedBooks(@RequestParam Integer count) {
     readerProperties.setCount(count);
     return readerProperties.getCount();

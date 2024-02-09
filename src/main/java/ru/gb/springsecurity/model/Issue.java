@@ -1,5 +1,6 @@
-package ru.gb.springdemo.model;
+package ru.gb.springsecurity.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;

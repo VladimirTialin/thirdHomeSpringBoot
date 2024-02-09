@@ -1,16 +1,16 @@
-package ru.gb.springdemo.model;
+package ru.gb.springsecurity.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name="readers")
-public class Reader {
-
+@Table(name = "books")
+public class Book {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
-    @Column(name="readerName")
+  @Column(name="bookName")
   private String name;
 }
