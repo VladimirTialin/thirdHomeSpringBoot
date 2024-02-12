@@ -18,7 +18,7 @@ import java.util.NoSuchElementException;
 
 @Slf4j
 @RestController
-@RequestMapping("/issues")
+@RequestMapping("/issue")
 public class IssuerController {
   @Autowired
   private IssuerService issuerService;
