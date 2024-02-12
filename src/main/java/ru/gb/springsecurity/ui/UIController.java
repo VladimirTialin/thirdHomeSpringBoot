@@ -18,7 +18,7 @@ public class UIController {
     private ReaderRepository readerRepository;
     @Autowired
     private  IssueRepository issueRepository;
-    @GetMapping("/books")
+    @GetMapping("/book")
     public String allBooks( Model model){
         model.addAttribute("books",bookRepository.findAll());
         return "books";
@@ -28,7 +28,7 @@ public class UIController {
         model.addAttribute("readers", readerRepository.findAll());
         return "readers";
     }
-    @GetMapping("/issues")
+    @GetMapping("/issue")
     public String allIssues(ModelMap model){
         model.addAttribute("issues",issueRepository.findAll());
         model.addAttribute("readers",readerRepository.findAll());

@@ -7,6 +7,9 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.stereotype.Component;
 
@@ -16,14 +19,18 @@ import java.security.Security;
 @EnableWebSecurity
 public class SecurityConfiguration {
     @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+    @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return  httpSecurity
-                .authorizeHttpRequests(registry ->registry.requestMatchers("/ui/**").hasAuthority("reader"))
-                .authorizeHttpRequests(registry ->registry.requestMatchers("/ui/**").hasAuthority("books"))
-                .authorizeHttpRequests(registry ->registry.requestMatchers("/ui/**").hasAuthority("issues"))
-                .authorizeHttpRequests(registry ->registry.requestMatchers("/ui/**").authenticated()
+                .authorizeHttpRequests(configure -> configure
+                        .requestMatchers("/ui/issue/**").hasAuthority("admin")
+                        .requestMatchers("/ui/reader/**").hasAuthority("reader")
+                        .requestMatchers("/ui/book/**").authenticated()
                         .anyRequest().permitAll())
-                .formLogin(Customizer.withDefaults())
+                .formLogin(Customizer.withDefaults()).csrf(AbstractHttpConfigurer::disable)
                 .build();
     }
 }
