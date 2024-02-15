@@ -2,6 +2,7 @@ package ru.gb.springsecurity.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ru.gb.springsecurity.aspect.Timer;
 import ru.gb.springsecurity.model.ReaderProperties;
 import ru.gb.springsecurity.model.Issue;
 import ru.gb.springsecurity.model.ValidateReaderException;
@@ -22,6 +23,7 @@ public class IssuerService {
   private  ReaderRepository readerRepository;
   @Autowired
   private IssueRepository issueRepository;
+  @Timer
   public Issue newIssue(Issue request) {
     AtomicLong count = new AtomicLong();
     if (bookRepository.findById(request.getBookId())==null){
